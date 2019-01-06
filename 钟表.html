@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<canvas id="a" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var cav = document.getElementById("a")
+			var c = cav.getContext("2d")
+			//圆
+			c.beginPath()
+			c.arc(200, 200, 120, 0, Math.PI * 2)
+			c.arc(200, 200, 5, 0, Math.PI * 2)
+			c.stroke()
+			c.clip()
+			var tp = new Image()
+			tp.src = "img/C239A5ABDBEFB1D661CE7972CE091316.jpg"
+			tp.onload = function() {
+				c.drawImage(tp, 50, 50, 300, 300)
+			}
+			setInterval("x1()", 1000)
+
+			function x1() {
+				//保存  清除 平移 旋转   起始点  画在画布上  恢复
+				c.clearRect(130, 130, 150, 160)
+				var d = new Date()
+				var h = d.getHours()
+				var m = d.getMinutes()
+				var s = d.getSeconds()
+				//文字 位置  字体大小
+				c.font = "15px 幼圆"
+				c.fillText(h + ":" + m + ":" + s, 170, 150)
+				c.strokeText("啊啊啊  美男", 150, 280)
+				//====================秒针
+				c.save()
+				c.beginPath()
+				c.translate(200, 200)
+				c.rotate(Math.PI / 180 * 6 * s)
+				c.moveTo(0, 0)
+				c.lineTo(0, -70)
+				c.strokeStyle = "green"
+				c.stroke()
+				c.restore()
+				//====================分针
+				c.save()
+				c.beginPath()
+				c.translate(200, 200)
+				c.rotate(Math.PI / 180 * 6 * m)
+				c.moveTo(0, 0)
+				c.lineTo(0, -60)
+				c.strokeStyle = "blue"
+				c.lineWidth = "2"
+				c.stroke()
+				c.restore()
+				//=========时针
+				c.save()
+				c.beginPath()
+				c.translate(200, 200)
+				c.rotate(Math.PI / 180 * 30 * h)
+				c.moveTo(0, 0)
+				c.lineTo(0, -40)
+				c.strokeStyle = "red"
+				c.lineWidth = "3"
+				c.stroke()
+				c.restore()
+				//========小圆
+				c.beginPath()
+				c.arc(200, 200, 5, 0, Math.PI * 2)
+				c.fillStyle = "aqua"
+				c.fill()
+				c.stroke()
+				//===时长
+				for(var i = 0; i < 12; i++) {
+					c.save()
+					c.beginPath()
+					c.translate(200, 200)
+					c.rotate(Math.PI / 180 * 30 * i)
+					c.moveTo(0, 100)
+					c.lineTo(0, 120)
+					c.stroke()
+					c.restore()
+				}
+				//==========中
+				for(var i = 0; i <= 24; i++) {
+					c.save()
+					c.beginPath()
+					c.translate(200, 200)
+					c.rotate(Math.PI / 180 * 15 * i)
+					c.moveTo(0, 105)
+					c.lineTo(0, 120)
+					c.stroke()
+					c.restore()
+				}
+				//========短
+				for(var i = 0; i <= 60; i++) {
+					c.save()
+					c.beginPath()
+					c.translate(200, 200)
+					c.rotate(Math.PI / 180 * 6 * i)
+					c.moveTo(0, 115)
+					c.lineTo(0, 120)
+					c.stroke()
+					c.restore()
+				}
+			}
+		</script>
+	</body>
+
+</html>
